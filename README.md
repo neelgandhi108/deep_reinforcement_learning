@@ -1,109 +1,95 @@
-[//]: # (Image References)
 
-[video_random]: https://github.com/dalmia/udacity-deep-reinforcement-learning/blob/master/2%20-%20Value-based%20methods/Project-Navigation/results/random_agent.gif "Random Agent"
+# Embarking on Odyssey: Mastering Navigation Through Reinforcement Learning
 
-[video_trained]: https://github.com/dalmia/udacity-deep-reinforcement-learning/blob/master/2%20-%20Value-based%20methods/Project-Navigation/results/trained_agent.gif "Trained Agent"
+## Overview
 
-# Project 1: Navigation
+In this project, we delve into training an agent to effectively navigate through a vast, square environment while collecting yellow bananas. The main objective is to accumulate as many yellow bananas as possible while avoiding blue bananas. This endeavor involves employing deep reinforcement learning techniques to empower the agent's decision-making process.
 
-### Introduction
+![Random Agent](https://github.com/neelgandhi108/deep_reinforcement_learning_navigation/blob/master/results/random_agent.gif) | ![Trained Agent](https://github.com/neelgandhi108/deep_reinforcement_learning_navigation/blob/master/results/trained_agent.gif)
 
-For this project, you will train an agent to navigate (and collect bananas!) in a large, square world.  
-git clone:-https://github.com/neelgandhi108/deep_reinforcement_learning_navigation
+## Problem Statement
 
+The environment bestows a reward of +1 upon collecting a yellow banana and a penalty of -1 for acquiring a blue banana. The agent's task is to learn to optimize its actions to maximize the cumulative rewards. The agent perceives the environment through a 37-dimensional state space, which includes its velocity and a ray-based view of objects in its forward direction. The agent can take one of four discrete actions:
 
+-   **`0`** - move forward.
+-   **`1`** - move backward.
+-   **`2`** - turn left.
+-   **`3`** - turn right.
 
-| Random agent             |  Trained agent |
-:-------------------------:|:-------------------------:
-![Random Agent][video_random]  |  ![Trained Agent][video_trained]
+The project is episodic, and the agent must achieve an average score of +13 over 100 consecutive episodes to solve the environment.
 
-A reward of +1 is provided for collecting a yellow banana, and a reward of -1 is provided for collecting a blue banana.  Thus, the goal of your agent is to collect as many yellow bananas as possible while avoiding blue bananas.  
+## Getting Started
 
-The state space has 37 dimensions and contains the agent's velocity, along with ray-based perception of objects around agent's forward direction.  Given this information, the agent has to learn how to best select actions.  Four discrete actions are available, corresponding to:
-- **`0`** - move forward.
-- **`1`** - move backward.
-- **`2`** - turn left.
-- **`3`** - turn right.
+To initiate this project, follow these steps:
 
-The task is episodic, and in order to solve the environment, your agent must get an average score of +13 over 100 consecutive episodes.
-
-### Getting Started
-
-1. Download the environment from one of the links below.  You need only select the environment that matches your operating system:
-    - Linux: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux.zip)
-    - Mac OSX: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana.app.zip)
-    - Windows (32-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Windows_x86.zip)
-    - Windows (64-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Windows_x86_64.zip)
+1.  Download the environment suitable for your operating system using one of the links provided below:
     
-    (_For Windows users_) Check out [this link](https://support.microsoft.com/en-us/help/827218/how-to-determine-whether-a-computer-is-running-a-32-bit-version-or-64) if you need help with determining if your computer is running a 32-bit version or 64-bit version of the Windows operating system.
+    -   Linux: [download link](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux.zip)
+    -   Mac OSX: [download link](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana.app.zip)
+    -   Windows (32-bit): [download link](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Windows_x86.zip)
+    -   Windows (64-bit): [download link](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Windows_x86_64.zip)
+2.  After downloading, place the downloaded file in the same directory as this README file and unzip it. Then, specify the correct file path when creating the environment in the `Navigation_solution.ipynb` notebook:
+    
 
-    (_For AWS_) If you'd like to train the agent on AWS (and have not [enabled a virtual screen](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md)), then please use [this link](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux_NoVis.zip) to obtain the environment.
+pythonCopy code
 
-2. Place the file in this folder, unzip (or decompress) the file and then write the correct path in the argument for creating the environment under the notebook `Navigation_solution.ipynb`:
+`env = UnityEnvironment(file_name="Banana.app")` 
 
-```python
-env = env = UnityEnvironment(file_name="Banana.app")
+## Project Structure
 
-```
+The project comprises several important files:
 
-### Description
+-   `dqn_agent.py`: Contains the agent's code used in the environment.
+-   `model.py`: Contains the Q-Network implementation used as the function approximator by the agent.
+-   `dqn.pth`: Contains the saved model weights for the original DQN model.
+-   `ddqn.pth`: Contains the saved model weights for the Double DQN model.
+-   `dddqn.pth`: Contains the saved model weights for the Dueling Double DQN model.
+-   `Navigation_exploration.ipynb`: Notebook for exploring the Unity environment.
+-   `Navigation_solution.ipynb`: Notebook containing the solution.
+-   `Navigation_Pixels.ipynb`: Notebook focusing on the pixel-action problem.
 
-- `dqn_agent.py`: code for the agent used in the environment
-- `model.py`: code containing the Q-Network used as the function approximator by the agent
-- `dqn.pth`: saved model weights for the original DQN model
-- `ddqn.pth`: saved model weights for the Double DQN model
-- `ddqn.pth`: saved model weights for the Dueling Double DQN model
-- `Navigation_exploration.ipynb`: explore the unity environment
-- `Navigation_solution.ipynb`: notebook containing the solution
-- `Navigation_Pixels.ipynb`: notebook containing the code for the pixel-action problem (see below)
+## Instructions
 
-### Instructions
+Follow the instructions provided in `Navigation_solution.ipynb` to begin training your agent. If you wish to observe a trained intelligent agent, adhere to the following instructions:
 
-Follow the instructions in `Navigation_solution.ipynb` to get started with training your own agent! 
-To watch a trained smart agent, follow the instructions below:
+-   **DQN**: To run the original DQN algorithm, utilize the `dqn.pth` checkpoint to load the trained model. While defining the agent, set the `qnetwork` parameter to `QNetwork`, and the `update_type` parameter to `dqn`.
+-   **Double DQN**: For executing the Double DQN algorithm, utilize the `ddqn.pth` checkpoint to load the trained model. While defining the agent, set the `qnetwork` parameter to `QNetwork`, and the `update_type` parameter to `double_dqn`.
+-   **Dueling Double DQN**: To implement the Dueling Double DQN algorithm, use the `dddqn.pth` checkpoint to load the trained model. While defining the agent, set the `qnetwork` parameter to `DuelingQNetwork`, and the `update_type` parameter to `double_dqn`.
 
-- **DQN**: If you want to run the original DQN algorithm, use the checkpoint `dqn.pth` for loading the trained model. Also, choose the parameter `qnetwork` as `QNetwork` while defining the agent and the parameter `update_type` as `dqn`.
-- **Double DQN**: If you want to run the Double DQN algorithm, use the checkpoint `ddqn.pth` for loading the trained model. Also, choose the parameter `qnetwork` as `QNetwork` while defining the agent and the parameter `update_type` as `double_dqn`.
-- **Dueling Double DQN**: If you want to run the Dueling Double DQN algorithm, use the checkpoint `dddqn.pth` for loading the trained model. Also, choose the parameter `qnetwork` as `DuelingQNetwork` while defining the agent and the parameter `update_type` as `double_dqn`.
+## Algorithm Enhancements
 
-### Enhancements
+Several improvements have been incorporated into the original DQN algorithm:
 
-Several enhancements to the original DQN algorithm have also been incorporated:
+-   **Double DQN**: Implementation based on the [paper](https://arxiv.org/abs/1509.06461) and [code](https://github.com/dalmia/udacity-deep-reinforcement-learning/blob/master/2%20-%20Value-based%20methods/Project-Navigation/dqn_agent.py#L94).
+-   **Prioritized Experience Replay**: Work in progress.
+-   **Dueling DQN**: Implementation based on the [paper](https://arxiv.org/abs/1511.06581) and [code](https://github.com/dalmia/udacity-deep-reinforcement-learning/blob/master/2%20-%20Value-based%20methods/Project-Navigation/model.py).
 
-- Double DQN [[Paper](https://arxiv.org/abs/1509.06461)] [[Code](https://github.com/dalmia/udacity-deep-reinforcement-learning/blob/master/2%20-%20Value-based%20methods/Project-Navigation/dqn_agent.py#L94)]
-- Prioritized Experience Replay [[Paper](https://arxiv.org/abs/1511.05952)] [[Code]()] (WIP)
-- Dueling DQN [[Paper](https://arxiv.org/abs/1511.06581)] [[Code](https://github.com/dalmia/udacity-deep-reinforcement-learning/blob/master/2%20-%20Value-based%20methods/Project-Navigation/model.py)]
+## Results
 
-### Results
+The plotted scores per episode provide insights into the learning progress. The environment was successfully solved in **377** episodes (currently).
 
-Plot showing the score per episode over all the episodes. The environment was solved in **377** episodes (currently).
+Double DQN
 
-| Double DQN | DQN | Dueling DQN |
-:-------------------------:|:-------------------------:|:-------------------------:
-![double-dqn-scores](https://github.com/dalmia/udacity-deep-reinforcement-learning/blob/master/2%20-%20Value-based%20methods/Project-Navigation/results/ddqn_new_scores.png) |  ![dqn-scores](https://github.com/dalmia/udacity-deep-reinforcement-learning/blob/master/2%20-%20Value-based%20methods/Project-Navigation/results/dqn_new_scores.png) | ![dueling-double-dqn-scores](https://github.com/dalmia/udacity-deep-reinforcement-learning/blob/master/2%20-%20Value-based%20methods/Project-Navigation/results/dddqn_new_scores.png) 
+DQN
 
+Dueling DQN
 
-### Challenge: Learning from Pixels
+![double-dqn-scores](https://github.com/neelgandhi108/deep_reinforcement_learning_navigation/blob/master/results/ddqn_new_scores.png)
 
-In the project, your agent learned from information such as its velocity, along with ray-based perception of objects around its forward direction.  A more challenging task would be to learn directly from pixels!
+![dqn-scores](https://github.com/neelgandhi108/deep_reinforcement_learning_navigation/blob/master/results/dqn_new_scores.png)
 
-To solve this harder task, you'll need to download a new Unity environment.  This environment is almost identical to the project environment, where the only difference is that the state is an 84 x 84 RGB image, corresponding to the agent's first-person view.  (**Note**: Udacity students should not submit a project with this new environment.)
+![dueling-double-dqn-scores](https://github.com/neelgandhi108/deep_reinforcement_learning_navigation/blob/master/results/dddqn_new_scores.png)
 
-You need only select the environment that matches your operating system:
-- Linux: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana_Linux.zip)
-- Mac OSX: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana.app.zip)
-- Windows (32-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana_Windows_x86.zip)
-- Windows (64-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana_Windows_x86_64.zip)
+## Challenge: Learning from Pixels
 
-Then, place the file in this folder, and unzip (or decompress) the file.  Next, open `Navigation_Pixels.ipynb` and follow the instructions to learn how to use the Python API to control the agent.
+The project initially involves the agent learning from its velocity and ray-based perceptions. For a more challenging task, learning directly from pixels is explored. A specialized Unity environment is provided for this purpose. This environment mirrors the project environment, with the crucial difference that the state now consists of an 84 x 84 RGB image, representing the agent's first-person view.
 
-(_For AWS_) If you'd like to train the agent on AWS, you must follow the instructions to [set up X Server](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md), and then download the environment for the **Linux** operating system above.
+Please note that Udacity students should refrain from submitting a project using this new environment. Detailed instructions for using this setup are provided in the `Navigation_Pixels.ipynb` notebook.
 
-### Dependencies
+## Dependencies
 
-Use the `requirements.txt` file (in the [main](https://github.com/dalmia/udacity-deep-reinforcement-learning) folder) to install the required dependencies via `pip`.
+Install the required dependencies using the `requirements.txt` file located in the [main](https://github.com/neelgandhi108/deep_reinforcement_learning_navigation) folder:
 
-```
-pip install -r requirements.txt
+bashCopy code
 
-```
+`pip install -r requirements.txt`
